@@ -56,7 +56,7 @@ jQuery(document).ready(function($) {
                     var results = JSON.parse(data);
                     var suggestions = '';
                     results.forEach(function(patient) {
-                        suggestions += '<div class="suggestion-item" data-name="' + patient.name + '">' + patient.name + '</div>';
+                        suggestions += '<div class="suggestion-item-patient" data-name="' + patient.name + '">' + patient.name + '</div>';
                     });
                     $('#patient_suggestions').html(suggestions).show();
                 }
@@ -66,7 +66,7 @@ jQuery(document).ready(function($) {
         }
     });
 
-    $(document).on('click', '.suggestion-item', function() {
+    $(document).on('click', '.suggestion-item-patient', function() {
         var name = $(this).data('name');
         $('#patient_name').val(name);
         $('#patient_suggestions').hide();
@@ -92,7 +92,7 @@ jQuery(document).ready(function($) {
                     var results = JSON.parse(data);
                     var suggestions = '';
                     results.forEach(function(specialty) {
-                        suggestions += '<div class="suggestion-item" data-name="' + specialty.name + '">' + specialty.name + '</div>';
+                        suggestions += '<div class="suggestion-item-specialty" data-name="' + specialty.name + '">' + specialty.name + '</div>';
                     });
                     $('#specialty_suggestions').html(suggestions).show();
                 }
@@ -102,7 +102,7 @@ jQuery(document).ready(function($) {
         }
     });
 
-    $(document).on('click', '.suggestion-item', function() {
+    $(document).on('click', '.suggestion-item-specialty', function() {
         var name = $(this).data('name');
         $('#specialty_name').val(name);
         $('#specialty_suggestions').hide();
