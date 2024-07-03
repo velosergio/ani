@@ -3,7 +3,6 @@
 class ANI_DB {
     public static function install() {
         global $wpdb;
-
         $charset_collate = $wpdb->get_charset_collate();
 
         $table_patients = $wpdb->prefix . 'ani_patients';
@@ -32,10 +31,21 @@ class ANI_DB {
             PRIMARY KEY  (id)
         ) $charset_collate;";
 
+        $table_appointments = $wpdb->prefix . 'ani_appointments';
+        $sql_appointments = "CREATE TABLE $table_appointments (
+            id mediumint(9) NOT NULL AUTO_INCREMENT,
+            patient_name tinytext NOT NULL,
+            specialty tinytext NOT NULL,
+            date date NOT NULL,
+            PRIMARY KEY  (id)
+        ) $charset_collate;";
+
         require_once(ABSPATH . 'wp-admin/includes/upgrade.php');
         dbDelta($sql_patients);
         dbDelta($sql_professionals);
         dbDelta($sql_specialties);
+        dbDelta($sql_appointments);
     }
 }
+
 ?>

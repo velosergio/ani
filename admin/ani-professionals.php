@@ -1,39 +1,44 @@
-<h2>Gestión de Profesionales</h2>
-<form method="post" action="">
-    <table>
-        <tr>
-            <th>Nombre</th>
-            <td><input type="text" name="name" required /></td>
-        </tr>
-        <tr>
-            <th>Email</th>
-            <td><input type="email" name="email" required /></td>
-        </tr>
-        <tr>
-            <th>Teléfono</th>
-            <td><input type="text" name="phone" required /></td>
-        </tr>
-        <tr>
-            <th>Especialidades</th>
-            <td>
-                <input type="text" id="specialty_name" name="specialties" autocomplete="off" required />
-                <div id="specialty_suggestions" style="border: 1px solid #ccc; display: none; max-height: 150px; overflow-y: auto;"></div>
-            </td>
-        </tr>
-        <tr>
-            <td colspan="2"><input type="submit" name="register_professional" value="Registrar Profesional" /></td>
-        </tr>
-    </table>
-</form>
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-header">
+                    <h4 class="card-title">Gestión de Profesionales</h4>
+                </div>
+                <div class="card-body">
+                    <form method="post" action="">
+                        <div class="form-group">
+                            <label>Nombre</label>
+                            <input type="text" name="name" class="form-control" required />
+                        </div>
+                        <div class="form-group">
+                            <label>Email</label>
+                            <input type="email" name="email" class="form-control" required />
+                        </div>
+                        <div class="form-group">
+                            <label>Teléfono</label>
+                            <input type="text" name="phone" class="form-control" required />
+                        </div>
+                        <div class="form-group">
+                            <label>Especialidades</label>
+                            <input type="text" id="specialty_name" name="specialties" class="form-control" autocomplete="off" required />
+                            <div id="specialty_suggestions" class="list-group" style="position: absolute; z-index: 1000; display: none;"></div>
+                        </div>
+                        <button type="submit" name="register_professional" class="btn btn-primary">Registrar Profesional</button>
+                    </form>
 
-<?php
-if (isset($_POST['register_professional'])) {
-    ANI_Professionals::register_professional($_POST['name'], $_POST['email'], $_POST['phone'], $_POST['specialties']);
-    echo '<div>Profesional registrado exitosamente</div>';
-}
-?>
+                    <?php
+                    if (isset($_POST['register_professional'])) {
+                        ANI_Professionals::register_professional($_POST['name'], $_POST['email'], $_POST['phone'], $_POST['specialties']);
+                        echo '<div class="alert alert-success mt-3">Profesional registrado exitosamente</div>';
+                    }
+                    ?>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
 jQuery(document).ready(function($) {
     $('#specialty_name').on('input', function() {
@@ -50,7 +55,7 @@ jQuery(document).ready(function($) {
                     var results = JSON.parse(data);
                     var suggestions = '';
                     results.forEach(function(specialty) {
-                        suggestions += '<div class="suggestion-item" data-name="' + specialty.name + '">' + specialty.name + '</div>';
+                        suggestions += '<div class="list-group-item suggestion-item-specialty" data-name="' + specialty.name + '">' + specialty.name + '</div>';
                     });
                     $('#specialty_suggestions').html(suggestions).show();
                 }
@@ -60,7 +65,7 @@ jQuery(document).ready(function($) {
         }
     });
 
-    $(document).on('click', '.suggestion-item', function() {
+    $(document).on('click', '.suggestion-item-specialty', function() {
         var name = $(this).data('name');
         $('#specialty_name').val(name);
         $('#specialty_suggestions').hide();

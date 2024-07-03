@@ -1,10 +1,26 @@
 <?php
 
 class ANI_Scheduler {
-    public static function schedule_appointment($patient_id, $specialty, $date) {
-        // Lógica para asignar consultorios y profesionales disponibles
-        // Aquí puedes escribir un algoritmo para encontrar un consultorio y un profesional disponible
-        // y asignar la cita en el horario solicitado.
+    public static function schedule_appointment($patient_name, $specialty, $date, $time) {
+        global $wpdb;
+        $table_name = $wpdb->prefix . 'ani_appointments';
+
+        $wpdb->insert(
+            $table_name,
+            array(
+                'patient_name' => $patient_name,
+                'specialty' => $specialty,
+                'date' => $date,
+                'time' => $time
+            ),
+            array(
+                '%s',
+                '%s',
+                '%s',
+                '%s'
+            )
+        );
     }
 }
+
 ?>

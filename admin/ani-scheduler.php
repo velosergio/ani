@@ -1,43 +1,48 @@
-<h2>Scheduler</h2>
-<form method="post" action="">
-    <table>
-        <tr>
-            <th>Nombre del paciente</th>
-            <td>
-                <input type="text" id="patient_name" name="patient_name" autocomplete="off" required />
-                <div id="patient_suggestions" style="border: 1px solid #ccc; display: none; max-height: 150px; overflow-y: auto;"></div>
-            </td>
-        </tr>
-        <tr>
-            <th>Especialidad</th>
-            <td>
-                <input type="text" id="specialty_name" name="specialty" autocomplete="off" required />
-                <div id="specialty_suggestions" style="border: 1px solid #ccc; display: none; max-height: 150px; overflow-y: auto;"></div>
-            </td>
-        </tr>
-        <tr>
-            <th>Fecha</th>
-            <td><input type="date" name="date" required /></td>
-        </tr>
-        <tr>
-            <td colspan="2"><input type="submit" name="schedule_appointment" value="Programar Cita" /></td>
-        </tr>
-    </table>
-</form>
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-header">
+                    <h4 class="card-title">Scheduler</h4>
+                </div>
+                <div class="card-body">
+                    <form method="post" action="">
+                        <div class="form-group">
+                            <label>Nombre del paciente</label>
+                            <input type="text" id="patient_name" name="patient_name" class="form-control" autocomplete="off" required />
+                            <div id="patient_suggestions" class="list-group" style="position: absolute; z-index: 1000; display: none;"></div>
+                        </div>
+                        <div class="form-group">
+                            <label>Especialidad</label>
+                            <input type="text" id="specialty_name" name="specialty" class="form-control" autocomplete="off" required />
+                            <div id="specialty_suggestions" class="list-group" style="position: absolute; z-index: 1000; display: none;"></div>
+                        </div>
+                        <div class="form-group">
+                            <label>Fecha</label>
+                            <input type="date" name="date" class="form-control" required />
+                        </div>
+                        <div class="form-group">
+                            <label>Hora</label>
+                            <input type="time" name="time" class="form-control" required />
+                        </div>
+                        <button type="submit" name="schedule_appointment" class="btn btn-primary">Programar Cita</button>
+                    </form>
 
-<?php
-if (isset($_POST['schedule_appointment'])) {
-    // Obtener el ID del paciente a partir del nombre
-    $patient_name = $_POST['patient_name'];
-    $patient = ANI_Patients::get_patient_by_name($patient_name);
-    if ($patient) {
-        ANI_Scheduler::schedule_appointment($patient->id, $_POST['specialty'], $_POST['date']);
-        echo '<div>Cita programada exitosamente</div>';
-    } else {
-        echo '<div>No se encontró al paciente</div>';
-    }
-}
-?>
+                    <?php
+                    if (isset($_POST['schedule_appointment'])) {
+                        $patient_name = sanitize_text_field($_POST['patient_name']);
+                        $specialty = sanitize_text_field($_POST['specialty']);
+                        $date = sanitize_text_field($_POST['date']);
+                        $time = sanitize_text_field($_POST['time']);
+                        ANI_Scheduler::schedule_appointment($patient_name, $specialty, $date, $time);
+                        echo '<div class="alert alert-success mt-3">Cita programada exitosamente</div>';
+                    }
+                    ?>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
@@ -56,7 +61,7 @@ jQuery(document).ready(function($) {
                     var results = JSON.parse(data);
                     var suggestions = '';
                     results.forEach(function(patient) {
-                        suggestions += '<div class="suggestion-item-patient" data-name="' + patient.name + '">' + patient.name + '</div>';
+                        suggestions += '<div class="list-group-item suggestion-item-patient" data-name="' + patient.name + '">' + patient.name + '</div>';
                     });
                     $('#patient_suggestions').html(suggestions).show();
                 }
@@ -92,7 +97,7 @@ jQuery(document).ready(function($) {
                     var results = JSON.parse(data);
                     var suggestions = '';
                     results.forEach(function(specialty) {
-                        suggestions += '<div class="suggestion-item-specialty" data-name="' + specialty.name + '">' + specialty.name + '</div>';
+                        suggestions += '<div class="list-group-item suggestion-item-specialty" data-name="' + specialty.name + '">' + specialty.name + '</div>';
                     });
                     $('#specialty_suggestions').html(suggestions).show();
                 }
