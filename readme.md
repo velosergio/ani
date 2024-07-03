@@ -1,8 +1,19 @@
-# Proyecto ANI
+# ANI - Plugin de Gestión para IPS
 
-## Descripción
+ANI es un plugin de WordPress diseñado para gestionar la asignación de consultorios y la programación de citas en la institución de salud ANI IPS. Este plugin ayuda a optimizar la programación de citas, la gestión de profesionales y pacientes, y facilita el manejo de especialidades médicas.
 
-ANI es un plugin de WordPress desarrollado para gestionar la asignación de consultorios y la programación de citas en ANI IPS, una institución de salud con énfasis en neuropsicología. Este plugin permite registrar pacientes y profesionales, y facilita la asignación automática de consultorios para las citas programadas, asegurando que cada profesional tenga una agenda llena y optimizada.
+## Características
+
+- **Gestión de Pacientes**: Permite registrar, listar y gestionar pacientes.
+- **Gestión de Profesionales**: Permite registrar, listar y gestionar profesionales de la salud.
+- **Gestión de Especialidades**: Permite registrar, listar y gestionar especialidades médicas.
+- **Scheduler**: Funcionalidad para programar citas con autocompletar para nombres de pacientes y especialidades.
+
+## Instalación
+
+1. Clona este repositorio en la carpeta `wp-content/plugins` de tu instalación de WordPress:
+   ```bash
+   git clone https://github.com/velosergio/ani.git
 
 ## Funcionalidades
 
@@ -25,29 +36,3 @@ ANI es un plugin de WordPress desarrollado para gestionar la asignación de cons
    - Autocompletar para el campo de nombre del paciente utilizando AJAX.
    - Autocompletar para el campo de especialidad utilizando AJAX.
    - Asignación automática de consultorios disponibles para las citas programadas.
-
-## Avances
-
-### Estructura del Plugin
-
-- **Archivo Principal (`ani.php`)**:
-  - Configuración del plugin.
-  - Inclusión de archivos necesarios.
-  - Registro de menús en el administrador.
-  - Endpoints AJAX para buscar nombres de pacientes y especialidades.
-
-- **Base de Datos**:
-  - Creación de tablas para pacientes, profesionales y especialidades.
-  - Funciones para registrar y obtener pacientes, profesionales y especialidades.
-
-- **Formulario de Registro de Pacientes**:
-  - Eliminación del campo de especialidades.
-
-- **Formulario de Registro de Profesionales**:
-  - Eliminación del campo de horarios.
-  - Implementación de autocompletar para el campo de especialidades.
-
-- **Formulario de Scheduler**:
-  - Cambio del campo ID a "Nombre del paciente".
-  - Implementación de autocompletar para el campo de nombre del paciente.
-  - Implementación de autocompletar para el campo de especialidad.
