@@ -19,3 +19,19 @@
     --bs-btn-disabled-bg: #98e2db;
     --bs-btn-disabled-border-color: #98e2db;
 }
+
+.main-content {
+    padding-top: 4rem;
+}
+
+.header {
+    padding-bottom: 4rem !important;
+}
+
+.container-fluid {
+    width: 100% !important;
+    padding-right: 15px !important;
+    padding-left: 15px !important;
+    margin-right: auto !important;
+    margin-left: auto !important;
+}

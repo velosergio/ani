@@ -1,5 +1,9 @@
 <?php
 
+if ( ! defined( 'ABSPATH' ) ) {
+    exit; // Exit if accessed directly.
+}
+
 class ANI_DB {
     public static function install() {
         global $wpdb;
@@ -50,12 +54,33 @@ class ANI_DB {
             UNIQUE KEY setting_key (setting_key)
         ) $charset_collate;";
 
+        $table_consultorios = $wpdb->prefix . 'ani_consultorios';
+        $sql_consultorios = "CREATE TABLE $table_consultorios (
+            id mediumint(9) NOT NULL AUTO_INCREMENT,
+            nombre varchar(255) NOT NULL,
+            dias date NOT NULL,
+            horarios time NOT NULL,
+            PRIMARY KEY (id)
+        ) $charset_collate;";
+
+        $table_asignaciones = $wpdb->prefix . 'ani_asignaciones';
+        $sql_asignaciones = "CREATE TABLE $table_asignaciones (
+            id mediumint(9) NOT NULL AUTO_INCREMENT,
+            consultorio varchar(255) NOT NULL,
+            profesional varchar(255) NOT NULL,
+            dia date NOT NULL,
+            horario time NOT NULL,
+            PRIMARY KEY (id)
+        ) $charset_collate;";
+
         require_once(ABSPATH . 'wp-admin/includes/upgrade.php');
         dbDelta($sql_patients);
         dbDelta($sql_professionals);
         dbDelta($sql_specialties);
         dbDelta($sql_appointments);
         dbDelta($sql_settings);
+        dbDelta($sql_consultorios);
+        dbDelta($sql_asignaciones);
     }
 }
 

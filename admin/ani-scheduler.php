@@ -25,7 +25,7 @@
                             <label>Hora</label>
                             <input type="time" name="time" class="form-control" required />
                         </div>
-                        <button type="submit" name="schedule_appointment" class="btn btn-primary">Programar Cita</button>
+                        <button type="submit" name="schedule_appointment" class="btn ani-btn-primary">Programar Cita</button>
                     </form>
 
                     <?php

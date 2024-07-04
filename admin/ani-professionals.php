@@ -87,7 +87,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                             <input type="text" name="phone" id="phone" class="form-control" autocomplete="tel" required />
                         </div>
                         <div class="form-group">
-                            <label for="specialties">Especialidades</label>
+                            <label for="specialties">Especialidades (registrar en el menú especialidades)</label>
                             <select id="specialties" name="specialties[]" class="form-control" multiple></select>
                         </div>
                         <button type="submit" name="register_professional" class="btn ani-btn-primary">Registrar Profesional</button>

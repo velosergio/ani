@@ -58,7 +58,7 @@ function ani_admin_menu() {
 add_action('admin_menu', 'ani_admin_menu');
 
 function ani_admin_page() {
-    echo '<h1>ANI - Panel de Control</h1>';
+    include plugin_dir_path(__FILE__) . 'admin/ani-admin.php';
 }
 
 function ani_patients_page() {
