@@ -37,7 +37,17 @@ class ANI_DB {
             patient_name tinytext NOT NULL,
             specialty tinytext NOT NULL,
             date date NOT NULL,
+            time time NOT NULL,
             PRIMARY KEY  (id)
+        ) $charset_collate;";
+
+        $table_settings = $wpdb->prefix . 'ani_settings';
+        $sql_settings = "CREATE TABLE $table_settings (
+            id MEDIUMINT(9) NOT NULL AUTO_INCREMENT,
+            setting_key VARCHAR(191) NOT NULL,
+            setting_value LONGTEXT NOT NULL,
+            PRIMARY KEY (id),
+            UNIQUE KEY setting_key (setting_key)
         ) $charset_collate;";
 
         require_once(ABSPATH . 'wp-admin/includes/upgrade.php');
@@ -45,6 +55,7 @@ class ANI_DB {
         dbDelta($sql_professionals);
         dbDelta($sql_specialties);
         dbDelta($sql_appointments);
+        dbDelta($sql_settings);
     }
 }
 

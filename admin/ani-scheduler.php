@@ -19,7 +19,7 @@
                         </div>
                         <div class="form-group">
                             <label>Fecha</label>
-                            <input type="date" name="date" class="form-control" required />
+                            <input type="text" id="date" name="date" class="form-control datepicker" required />
                         </div>
                         <div class="form-group">
                             <label>Hora</label>
@@ -117,6 +117,13 @@ jQuery(document).ready(function($) {
         if (!$(e.target).closest('#specialty_name, #specialty_suggestions').length) {
             $('#specialty_suggestions').hide();
         }
+    });
+
+    // Inicializar el datepicker
+    $('.datepicker').datepicker({
+        format: 'yyyy-mm-dd',
+        autoclose: true,
+        todayHighlight: true
     });
 });
 </script>

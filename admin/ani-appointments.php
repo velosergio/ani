@@ -1,6 +1,6 @@
 <div class="container">
     <div class="row">
-        <div class="col-md-12">
+        <div class="col-md-6">
             <div class="card">
                 <div class="card-header">
                     <h4 class="card-title">Citas Programadas</h4>
@@ -10,9 +10,7 @@
                 </div>
             </div>
         </div>
-    </div>
-    <div class="row mt-4">
-        <div class="col-md-12">
+        <div class="col-md-6">
             <div class="card">
                 <div class="card-header">
                     <h4 class="card-title">Citas de Hoy</h4>
@@ -65,6 +63,14 @@ jQuery(document).ready(function($) {
     });
     calendar.render();
 
+    // Function to convert 24-hour time to 12-hour time with AM/PM
+    function formatTime(time) {
+        var [hour, minute, second] = time.split(':');
+        var ampm = hour >= 12 ? 'PM' : 'AM';
+        hour = hour % 12 || 12; // Convert to 12-hour format
+        return hour + ':' + minute + ' ' + ampm;
+    }
+
     // Fetch today's appointments
     $.ajax({
         url: ajaxurl,
@@ -80,7 +86,7 @@ jQuery(document).ready(function($) {
                 tbody.append('<tr><td colspan="3">No hay citas para hoy.</td></tr>');
             } else {
                 appointments.forEach(function(appointment) {
-                    tbody.append('<tr><td>' + appointment.patient_name + '</td><td>' + appointment.specialty + '</td><td>' + appointment.time + '</td></tr>');
+                    tbody.append('<tr><td>' + appointment.patient_name + '</td><td>' + appointment.specialty + '</td><td>' + formatTime(appointment.time) + '</td></tr>');
                 });
             }
         },
