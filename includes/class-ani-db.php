@@ -58,8 +58,8 @@ class ANI_DB {
         $sql_consultorios = "CREATE TABLE $table_consultorios (
             id mediumint(9) NOT NULL AUTO_INCREMENT,
             nombre varchar(255) NOT NULL,
-            dias date NOT NULL,
-            horarios time NOT NULL,
+            horarios text NOT NULL,
+            dias text NOT NULL,
             PRIMARY KEY (id)
         ) $charset_collate;";
 
@@ -68,8 +68,8 @@ class ANI_DB {
             id mediumint(9) NOT NULL AUTO_INCREMENT,
             consultorio varchar(255) NOT NULL,
             profesional varchar(255) NOT NULL,
-            dia date NOT NULL,
-            horario time NOT NULL,
+            dia text NOT NULL,
+            horario text NOT NULL,
             PRIMARY KEY (id)
         ) $charset_collate;";
 
