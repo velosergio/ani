@@ -27,13 +27,17 @@ function ani_enqueue_admin_styles() {
     wp_enqueue_script('argon-dashboard-js', plugin_dir_url(__FILE__) . 'assets/js/plugins/argon-dashboard.min.js', array('jquery'), null, true);
     wp_enqueue_style('fullcalendar-css', 'https://cdn.jsdelivr.net/npm/fullcalendar@5.10.1/main.min.css');
     wp_enqueue_style('bootstrap-datepicker-css', 'https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker.min.css');
+    wp_enqueue_style('ani-custom-css', plugin_dir_url(__FILE__) . 'assets/css/ani-custom.css');
+    wp_enqueue_style('choices-css', 'https://cdn.jsdelivr.net/npm/choices.js/public/assets/styles/choices.min.css');
 }
 
 function ani_enqueue_admin_scripts() {
     wp_enqueue_script('jquery');
+    wp_enqueue_script('bootstrap-bundle-js', plugin_dir_url(__FILE__) . 'assets/js/core/bootstrap.bundle.min.js', array('jquery'), null, true);
     wp_enqueue_script('argon-dashboard-js', plugin_dir_url(__FILE__) . 'assets/js/plugins/argon-dashboard.min.js', array('jquery'), null, true);
     wp_enqueue_script('fullcalendar-js', 'https://cdn.jsdelivr.net/npm/fullcalendar@5.10.1/main.min.js', array('jquery'), null, true);
     wp_enqueue_script('bootstrap-datepicker-js', 'https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js', array('jquery'), null, true);
+    wp_enqueue_script('choices-js', 'https://cdn.jsdelivr.net/npm/choices.js/public/assets/scripts/choices.min.js', array(), null, true);
 }
 
 add_action('admin_enqueue_scripts', 'ani_enqueue_admin_styles');

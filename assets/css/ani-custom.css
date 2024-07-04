@@ -1,0 +1,21 @@
+.card.w-100 {
+    width: 100%;
+    max-width: 100%;
+}
+
+.ani-btn-primary {
+    --bs-btn-color: #000;
+    --bs-btn-bg: #98e2db;
+    --bs-btn-border-color: #98e2db;
+    --bs-btn-hover-color: #000;
+    --bs-btn-hover-bg: #68afaa;
+    --bs-btn-hover-border-color: #68afaa;
+    --bs-btn-focus-shadow-rgb: 80, 97, 194;
+    --bs-btn-active-color: #000;
+    --bs-btn-active-bg: #68afaa;
+    --bs-btn-active-border-color: #68afaa;
+    --bs-btn-active-shadow: none;
+    --bs-btn-disabled-color: #000;
+    --bs-btn-disabled-bg: #98e2db;
+    --bs-btn-disabled-border-color: #98e2db;
+}

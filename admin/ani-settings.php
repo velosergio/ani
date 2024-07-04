@@ -3,6 +3,9 @@ if ( ! defined( 'ABSPATH' ) ) {
     exit; // Exit if accessed directly.
 }
 
+// Incluir el archivo de funciones de WordPress
+require_once(ABSPATH . 'wp-admin/includes/template.php');
+
 $num_consultorios = ani_get_setting('num_consultorios');
 
 if (isset($_GET['status']) && $_GET['status'] == 'success') {
